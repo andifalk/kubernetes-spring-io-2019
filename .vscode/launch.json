@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Demo1Application<demo-app1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.demoapp.Demo1Application",
+            "projectName": "demo-app1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-InitialDemo1Application<02-initial-app>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.demoapp.InitialDemo1Application",
+            "projectName": "02-initial-app",
+            "args": ""
+        }
+    ]
+}

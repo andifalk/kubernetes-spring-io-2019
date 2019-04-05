@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app1
+spec:
+  selector:
+    matchLabels:
+      app: demo-app1
+  template:
+    metadata:
+      labels:
+        app: demo-app1
+    spec:
+      containers:
+      - name: demo-app1
+        image: andifalk/demo-app1:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: demo-app1
+              key: user.username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: demo-app1
+              key: user.password   
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: demo-app1
+              key: custom.message       
