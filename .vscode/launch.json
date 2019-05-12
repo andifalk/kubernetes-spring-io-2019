@@ -2,22 +2,18 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-Demo1Application<demo-app1>",
+            "name": "CodeLens (Launch) - DemoApplication",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "com.example.demoapp.Demo1Application",
-            "projectName": "demo-app1",
-            "args": ""
+            "mainClass": "com.example.discovery1.DemoApplication"
         },
         {
             "type": "java",
-            "name": "Spring Boot-InitialDemo1Application<02-initial-app>",
+            "name": "Spring Boot-DemoApplication<hello-spring-kubernetes>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "mainClass": "com.example.demoapp.InitialDemo1Application",
-            "projectName": "02-initial-app",
+            "mainClass": "com.example.hello.DemoApplication",
+            "projectName": "hello-spring-kubernetes",
             "args": ""
         }
     ]

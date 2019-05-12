@@ -1,8 +1,0 @@
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: demo-app1
-  namespace: default
-data:
-  application.properties: |-
-    custom.message='Hello K8s'

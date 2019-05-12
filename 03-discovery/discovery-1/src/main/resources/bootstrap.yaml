@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: discovery1
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          kubernetes: debug
