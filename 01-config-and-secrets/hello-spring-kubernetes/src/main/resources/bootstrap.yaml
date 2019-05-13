@@ -1,0 +1,38 @@
+spring:
+    application:
+        name: spring-kubernetes-demo
+    cloud:
+        kubernetes:
+            # kubernetes config maps    
+            config:
+                enabled: true
+                enable-api: true
+                namespace: default
+                sources:
+                  - name: ${spring.application.name}
+            # automatic reloading of config props      
+            reload:
+                enabled: true
+                mode: polling
+                period: 5000
+                strategy: refresh
+            # kubernetes secrets    
+            secrets:
+                enabled: true
+                # Not recommended to use api for reading secrets
+                # See https://kubernetes.io/docs/concepts/configuration/secret/#best-practices: 
+                # "For these reasons watch and list requests for secrets within a namespace are extremely powerful 
+                # capabilities and should be avoided, since listing secrets allows the clients to inspect 
+                # the values of all secrets that are in that namespace."
+                # Only use this for local dev purposes (to see if secrets are generally found and can be mapped)
+                enable-api: false   
+                namespace: default
+                name: ${spring.application.name}
+                paths:
+                - /etc/secrets/spring-kubernetes-demo
+logging:
+  level:
+    org:
+        springframework:
+            cloud:
+                kubernetes: debug                

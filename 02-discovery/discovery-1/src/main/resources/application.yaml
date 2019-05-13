@@ -1,0 +1,17 @@
+management:
+  endpoint:
+    restart:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  cloud:
+    kubernetes:
+      ribbon:
+        enabled: false
+    discovery:
+      enabled: true

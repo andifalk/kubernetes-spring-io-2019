@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+	id "com.palantir.docker" version "0.21.0"
+	id 'com.adarshr.test-logger' version '1.6.0'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext {
+	set('springCloudVersion', 'Greenwich.SR1')
+}
+
+docker {
+	name 'andifalk/discovery1:latest'
+//	name 'eu.gcr.io/pa-afa-kubernetes/hello-spring-kubernetes:latest'
+	files bootJar.archiveFile
+}
+
+test {
+	useJUnitPlatform()
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes'
+	implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-ribbon'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-junit-jupiter'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api'
+	testImplementation 'org.junit.jupiter:junit-jupiter-params'
+	testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
