@@ -5,5 +5,5 @@ pluginManagement {
 }
 rootProject.name = 'kubernetes-spring-io-2019'
 
-include '02-config-and-secrets:hello-spring-kubernetes'
-include '03-discovery:discovery-1'
+include '01-config-and-secrets:hello-spring-kubernetes'
+include '02-discovery:discovery-1'
