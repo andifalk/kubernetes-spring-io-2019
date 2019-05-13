@@ -5,5 +5,5 @@ metadata:
   namespace: default
 data:
   application.properties: |-
-    hello.message=k11s
+    hello.message=k8s
     hello.prefix=Hi
