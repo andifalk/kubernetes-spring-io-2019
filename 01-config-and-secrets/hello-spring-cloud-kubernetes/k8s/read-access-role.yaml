@@ -2,8 +2,8 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   namespace: default
-  name: read-access
+  name: hello-spring-cloud-kubernetes-read
 rules:
 - apiGroups: [""]
-  resources: ["namespaces", "pods", "services", "endpoints", "configmaps"]
+  resources: ["namespaces", "pods", "services", "endpoints"]
   verbs: ["get", "list", "watch"]

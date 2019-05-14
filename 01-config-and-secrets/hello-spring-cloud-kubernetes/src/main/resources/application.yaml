@@ -1,7 +1,3 @@
-spring:
-  application:
-    name: hello-spring-kubernetes
-
 management:
   endpoint:
     health:

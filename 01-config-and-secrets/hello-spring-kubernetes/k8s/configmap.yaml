@@ -1,9 +1,8 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: spring-kubernetes-demo
+  name: hello-spring-kubernetes
   namespace: default
 data:
-  application.properties: |-
-    hello.message=k8s
-    hello.prefix=Hi
+  hello.message: k8s
+  hello.prefix: Hi

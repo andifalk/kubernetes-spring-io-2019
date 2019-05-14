@@ -1,6 +1,6 @@
 spring:
     application:
-        name: spring-kubernetes-demo
+        name: hello-spring-cloud-kubernetes
     cloud:
         kubernetes:
             # kubernetes config maps    
@@ -29,7 +29,7 @@ spring:
                 namespace: default
                 name: ${spring.application.name}
                 paths:
-                - /etc/secrets/spring-kubernetes-demo
+                - /etc/secrets/${spring.application.name}
 logging:
   level:
     org:

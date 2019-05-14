@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-spring-cloud-kubernetes
+  name: hello-spring-cloud-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-spring-cloud-kubernetes
+  template:
+    metadata:
+      labels:
+        app: hello-spring-cloud-kubernetes
+    spec:
+      serviceAccountName: hello-spring-cloud-kubernetes
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - image: eu.gcr.io/pa-afa-kubernetes/hello-spring-cloud-kubernetes:latest
+          name: hello-spring-cloud-kubernetes
+          imagePullPolicy: Always
+          env:
+            - name: KUBERNETES_NAMESPACE
+              value: default 
+          resources:
+            limits:
+              memory: "1024Mi"
+              #cpu: "500m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5    
+          volumeMounts:
+            - name: "hello-spring-cloud-kubernetes"
+              readOnly: true
+              mountPath: "/etc/secrets/hello-spring-cloud-kubernetes"
+      volumes:
+        - name: "hello-spring-cloud-kubernetes"
+          secret:
+            secretName: "hello-spring-cloud-kubernetes"
+      restartPolicy: Always        

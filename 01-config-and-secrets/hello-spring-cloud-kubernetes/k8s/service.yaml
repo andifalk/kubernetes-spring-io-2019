@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-spring-kubernetes
+  name: hello-spring-cloud-kubernetes
 spec:
   selector:
-    app: hello-spring-kubernetes
+    app: hello-spring-cloud-kubernetes
   ports:
   - port: 8081
     targetPort: 8080

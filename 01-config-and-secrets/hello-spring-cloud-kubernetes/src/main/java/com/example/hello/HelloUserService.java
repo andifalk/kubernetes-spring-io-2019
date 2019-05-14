@@ -37,7 +37,7 @@ public class HelloUserService {
 
     @Bean
     UserDetailsService helloUserDetailsService() {
-        LOGGER.info("Password for user '{}': '{}'", userUsername.trim(), userPassword.trim());
+        LOGGER.info("Password for user '{}': '{}'", userUsername, userPassword);
         LOGGER.info("Password for user '{}': '{}'", adminUsername, adminPassword);
         return new InMemoryUserDetailsManager(
             Arrays.asList(

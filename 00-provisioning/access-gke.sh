@@ -1,7 +1,5 @@
-# access cluster on google cloud
+#!/bin/sh
+
 gcloud auth login
 gcloud config set project pa-afa-kubernetes
 gcloud container clusters get-credentials "springio2019"
-
-# delete cluster on google cloud
-gcloud beta container clusters delete "springio2019"

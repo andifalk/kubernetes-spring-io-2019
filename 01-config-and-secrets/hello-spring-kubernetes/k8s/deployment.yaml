@@ -2,32 +2,58 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-kubernetes
-  name: hello-kubernetes
+    app: hello-spring-kubernetes
+  name: hello-spring-kubernetes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-kubernetes
+      app: hello-spring-kubernetes
   template:
     metadata:
       labels:
-        app: hello-kubernetes
+        app: hello-spring-kubernetes
     spec:
-      serviceAccountName: spring-kubernetes
       securityContext:
         runAsNonRoot: true
       containers:
-        - image: andifalk/hello-spring-kubernetes:latest
+        - image: eu.gcr.io/pa-afa-kubernetes/hello-spring-kubernetes:latest
           name: hello-spring-kubernetes
           imagePullPolicy: Always
           env:
-            - name: KUBERNETES_NAMESPACE
-              value: default 
+            - name: HELLO_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: hello-spring-kubernetes
+                  key: hello.message
+            - name: HELLO_PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: hello-spring-kubernetes
+                  key: hello.prefix
+            - name: USER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hello-spring-kubernetes
+                  key: user.username
+            - name: USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hello-spring-kubernetes
+                  key: user.password
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hello-spring-kubernetes
+                  key: admin.username
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hello-spring-kubernetes
+                  key: admin.password
           resources:
             limits:
               memory: "1024Mi"
-              #cpu: "500m"
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false
@@ -41,12 +67,4 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 5    
-          volumeMounts:
-            - name: "spring-kubernetes-demo"
-              readOnly: true
-              mountPath: "/etc/secrets/spring-kubernetes-demo"
-      volumes:
-        - name: "spring-kubernetes-demo"
-          secret:
-            secretName: "spring-kubernetes-demo"
-      restartPolicy: Always        
+      restartPolicy: Always
