@@ -21,6 +21,17 @@ This presentation will consist of live coding and demos that will use sample app
 This repository contains the complete material for the session at [Spring I/O 2019](https://2019.springio.net/) 
 on [Spring Cloud on Kubernetes](https://2019.springio.net/sessions/spring-cloud-on-kubernetes)
 
+## Presentation slides
+
+[Presentation slides (Online)](https://andifalk.github.io/kubernetes-spring-io-2019)
+
+## Demos
+
+* Config Maps and Secrets
+  * [Spring Boot on Kubernetes (K8s Standard)](01-config-and-secrets/hello-spring-kubernetes)
+  * [Spring Boot on Kubernetes (with Spring Cloud Kubernetes)](01-config-and-secrets/hello-spring-cloud-kubernetes)
+* Discovery
+  * [Spring Boot discovery client (with Spring Cloud Kubernetes)](02-discovery/discovery-1)  
 
 ## License
 
