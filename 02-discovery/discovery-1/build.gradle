@@ -16,8 +16,8 @@ ext {
 }
 
 docker {
-	name 'andifalk/discovery1:latest'
-//	name 'eu.gcr.io/pa-afa-kubernetes/hello-spring-kubernetes:latest'
+//	name 'andifalk/discovery1:latest'
+	name 'eu.gcr.io/pa-afa-kubernetes/discovery1:latest'
 	files bootJar.archiveFile
 }
 

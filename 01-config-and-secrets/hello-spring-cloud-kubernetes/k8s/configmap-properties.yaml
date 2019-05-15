@@ -4,5 +4,6 @@ metadata:
   name: hello-spring-cloud-kubernetes
   namespace: default
 data:
-  hello.message: k8s
-  hello.prefix: Hi
+  application.properties: |-
+    hello.message=k8s
+    hello.prefix=Hi

@@ -5,5 +5,5 @@ metadata:
   name: hello-spring-cloud-kubernetes-read
 rules:
 - apiGroups: [""]
-  resources: ["namespaces", "pods", "services", "endpoints"]
+  resources: ["namespaces", "pods", "services", "endpoints", "configmaps"]
   verbs: ["get", "list", "watch"]

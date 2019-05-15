@@ -3,8 +3,15 @@ management:
     restart:
       enabled: true
     health:
-      show-details: always  
+      show-details: always
   endpoints:
-      web:
-        exposure:
-            include: '*'
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          kubernetes: debug
