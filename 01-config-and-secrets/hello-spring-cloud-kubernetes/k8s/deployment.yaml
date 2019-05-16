@@ -26,7 +26,7 @@ spec:
               value: default 
           resources:
             limits:
-              memory: "1024Mi"
+              memory: "768Mi"
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false
