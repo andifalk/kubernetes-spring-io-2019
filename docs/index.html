@@ -85,6 +85,7 @@
                         <h2 style="color: white">101</h2>
                     </section>
                     <section>
+                        <h2>Kubernetes Basics</h2>
                         <p>
                             <img src="images/kubernetes_basics.png" class="plain" width="100%">
                         </p>
@@ -94,23 +95,138 @@
                             </small>
                         </p>
                     </section>
+                    <section>
+                        <h3>K8s Config Maps</h3>
+                        <pre><code class="hljs yml" data-trim>
+                                kind: ConfigMap
+                                apiVersion: v1
+                                metadata:
+                                  name: hello-spring-cloud-kubernetes
+                                  namespace: default
+                                data:
+                                  hello.message: k8s
+                                  hello.prefix: Hi
+                        </code></pre>
+                        <pre><code class="hljs yml" data-trim>
+                                ...
+                                data:
+                                  application.properties: |-
+                                    hello.message=k8s
+                                    hello.prefix=Hi
+                        </code></pre>
+                        <pre><code class="hljs yml" data-trim>
+                                ...
+                                data:
+                                  application.yaml: |-
+                                    hello:
+                                      message: k8s
+                                      prefix: Hi
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>K8s Secrets</h2>
+                        <pre><code class="hljs yml" data-trim>
+                            apiVersion: v1
+                            kind: Secret
+                            metadata:
+                              name: hello-spring-cloud-kubernetes
+                              namespace: default
+                            type: Opaque
+                            data:
+                              user.username: dXNlcg==
+                              user.password: azhzX3VzZXI=
+                              admin.username: YWRtaW4=
+                              admin.password: azhzX2FkbWlu
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Secrets in Etcd</h2>
+                    </section>
+                    <section>
+                        <h2>Azure FlexVolumes</h2>
+                        <pre><code class="hljs yaml" data-trim>
+                              ..
+                              volumes:
+                              - name: kv-volume-env
+                                flexVolume:
+                                  driver: "azure/kv"
+                                  secretRef:
+                                    name: kvcreds
+                                  options:
+                                    keyvaultobjectnames: "mysecret1;mysecret2"
+                                    keyvaultobjecttypes: "secret;secret"
+                                    keyvaultname: "my-keyvault"
+                                    resourcegroup: "my-key-vault"
+                                    ...
+                                  readOnly: true
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Kubernetes KMS</h2>
+                        <pre><code class="hljs yaml" data-trim>
+                                apiVersion: apiserver.config.k8s.io/v1
+                                kind: EncryptionConfiguration
+                                resources:
+                                  - resources:
+                                    - secrets
+                                    providers:
+                                    - kms:
+                                        name: myKmsPlugin
+                                        endpoint: ...
+                                        ...
+                                    - identity: {}
+                        </code></pre>
+                        <p>Set the --encryption-provider-config flag on the kube-apiserver</p>
+                    </section>
                 </section>
 
                 <!-- Config Maps -->
                 <section>
                     <section data-background="images/title_image.png">
-                        <h2 style="color: white">Spring Boot Config on K8s</h2>
+                        <h2 style="color: white">Spring Cloud Kubernetes</h2>
                     </section>
                     <section>
-                        <h2>Spring Boot</h2>
-                        <h3>Externalize Configuration</h3>
+                        <p>DiscoveryClient for Kubernetes (with Ribbon Support)</p>
+                        <p>ConfigMap PropertySource</p>
+                        <p>Secrets PropertySource</p>
+                        <p>Kubernetes Ecosystem Awareness</p>
+                        <p>Kubernetes Profile</p>
+                        <p>Pod Health Indicator</p>
                     </section>
                     <section>
-                        <h2>K8s Config Maps</h2>
+                        <h2>Spring Cloud Kubernetes Starters</h2>
+                        <p>org.springframework.cloud</p>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Starter Dependency</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>spring-cloud-starter-kubernetes</td>
+                                <td>Discovery Client implementation that resolves service names to Kubernetes Services</td>
+                            </tr>
+                            <tr>
+                                <td>spring-cloud-starter-kubernetes-config</td>
+                                <td>(Re)Load application properties from Kubernetes ConfigMaps and Secrets</td>
+                            </tr>
+                            <tr>
+                                <td>spring-cloud-starter-kubernetes-ribbon</td>
+                                <td>Ribbon client-side load balancer with server list obtained from Kubernetes Endpoints</td>
+                            </tr>
+                            <tr>
+                                <td>spring-cloud-starter-kubernetes-all</td>
+                                <td>All Spring Cloud Kubernetes features.</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </section>
+
                 </section>
 
-                <!-- Config Maps -->
+                <!-- Secrets -->
                 <section>
                     <section data-background="images/title_image.png">
                         <h2 style="color: white">Spring Boot Secrets on K8s</h2>
@@ -119,12 +235,6 @@
                         <h2>Spring Boot</h2>
                         <h3>Sensitive data</h3>
                         <p>DB credentials, passwords, ...</p>
-                    </section>
-                    <section>
-                        <h2>K8s Secrets</h2>
-                    </section>
-                    <section>
-                        <h2>Secrets in Etcd</h2>
                     </section>
                 </section>
 
@@ -156,44 +266,12 @@
 
                 <!-- The End -->
                 <section>
-                    <section>
-                        <h2>Book References</h2>
-                        <img src="images/iron-glad-java.jpg" class="plain" width="24%">
-                        <img src="images/devops-handbook.jpg" class="plain" width="20%">
-                        <img src="images/oauth2_in_action.jpg" class="plain" width="24%">
-                        <img src="images/agile-security-book.jpg" class="plain" width="24%">
-                    </section>
                     <section data-background="images/title_image.png">
                         <h1 style="color: white">Q&A</h1>
                         <a href="https://www.novatec-gmbh.de/">https://www.novatec-gmbh.de</a></br>
                         <a href="https://blog.novatec-gmbh.de/">https://blog.novatec-gmbh.de</a><br>
                         <p style="color: white">andreas.falk@novatec-gmbh.de<br>
                         Twitter: @andifalk</p>
-                    </section>
-                    <section>
-                        <h2>Online References</h2>
-                        <small>
-                            <ul>
-                                <li><a href="https://tools.ietf.org/html/rfc6749">RFC 6749: The OAuth 2.0 Authorization Framework</a></li>
-                                <li><a href="https://tools.ietf.org/html/rfc6750">RFC 6750: OAuth 2.0 Bearer Token Usage</a></li>
-                                <li><a href="https://tools.ietf.org/html/rfc6819">RFC 6819: OAuth 2.0 Threat Model and Security Considerations</a></li>
-                                <li><a href="http://tools.ietf.org/html/rfc7636">RFC 7636: Proof Key for Code Exchange (&ldquo;Pixy&rdquo;)</a></li>
-                                <li><a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core 1.0</a></li>
-                                <li><a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Dynamic Client Registration 1.0</a></li>
-                                <li><a href="https://openid.net/specs/openid-connect-discovery-1_0.html">OpenID Connect Discovery 1.0</a></li>
-                                <li><a href="https://tools.ietf.org/html/rfc7519">RFC 7519: JSON Web Token (JWT)</a></li>
-                                <li><a href="https://tools.ietf.org/html/draft-ietf-oauth-jwt-bcp">JSON Web Token Best Current Practices</a></li>
-                                <li><a href="https://sec.uni-stuttgart.de/events/osw2019">4. OAuth Security Workshop 2019 event web page</a></li>
-                                <li><a href="https://medium.com/oauth-2/why-you-should-stop-using-the-oauth-implicit-grant-2436ced1c926">Why you should stop using the OAuth implicit grant</a></li>
-                                <li><a href="https://tools.ietf.org/html/draft-ietf-oauth-security-topics">OAuth 2.0 Security Best Current Practice</a></li>
-                                <li><a href="https://tools.ietf.org/html/draft-ietf-oauth-browser-based-apps-01">OAuth 2.0 for Browser-Based Apps</a></li>
-                                <li><a href="https://tools.ietf.org/html/draft-ietf-oauth-mtls">OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access Tokens</a></li>
-                                <li><a href="https://tools.ietf.org/html/draft-ietf-oauth-access-token-jwt">JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens</a></li>
-                                <li><a href="https://spring.io/projects/spring-security">Spring Security</a></li>
-                            </ul>
-                            <p>All images used are from <a href="https://pixabay.com/">Pixabay</a> and are published under <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">Creative Commons CC0 license.</a></p>
-                            All used logos are trademarks of respective companies
-                        </small>
                     </section>
                 </section>
 			</div>

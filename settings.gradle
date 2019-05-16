@@ -7,4 +7,5 @@ rootProject.name = 'kubernetes-spring-io-2019'
 
 include '01-config-and-secrets:hello-spring-kubernetes'
 include '01-config-and-secrets:hello-spring-cloud-kubernetes'
-include '02-discovery:discovery-1'
+include '02-discovery:question-client'
+include '02-discovery:answering-service'

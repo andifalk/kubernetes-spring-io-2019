@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: answering-service
+  name: answering-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: answering-service
+  template:
+    metadata:
+      labels:
+        app: answering-service
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - image: eu.gcr.io/pa-afa-kubernetes/answering-service:latest
+          name: answering-service
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "768Mi"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9090
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      restartPolicy: Always

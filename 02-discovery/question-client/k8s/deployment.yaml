@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: question-service
+  name: question-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: question-service
+  template:
+    metadata:
+      labels:
+        app: question-service
+    spec:
+      serviceAccountName: question-service
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - image: eu.gcr.io/pa-afa-kubernetes/question-service:latest
+          name: question-service
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "768Mi"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      restartPolicy: Always
