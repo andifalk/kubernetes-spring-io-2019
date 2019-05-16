@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: question-client
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+
+

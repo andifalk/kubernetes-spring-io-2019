@@ -1,0 +1,23 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  cloud:
+    discovery:
+      enabled: false
+
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          kubernetes: debug
+server:
+  port: 9090
