@@ -7,7 +7,7 @@ spring:
       reload:
         enabled: true
         mode: polling
-        period: 5000
+        period: 1000
         strategy: refresh
       # kubernetes config maps
       config:
