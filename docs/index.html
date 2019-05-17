@@ -63,18 +63,10 @@
                         <p><img class="plain" src="images/novatec_logo_big.png" width="40%"></p>
                     </section>
                     <section>
-                        <h3>Novatec Offices</h3>
-                        <p>
-                            <img class="plain" src="images/novatec_offices.png">
-                        </p>
-                    </section>
-                    <section>
                         <h1>Spring Cloud on Kubernetes</h1>
                         <p>K8s 101</p>
-                        <p>Config Maps</p>
-                        <p>Secrets & Encryption</p>
-                        <p>Discovery Client</p>
-                        <p>K8s Best Practices for Spring/Java Devs</p>
+                        <p>Spring Cloud Kubernetes</p>
+                        <p>K8s Security Best Practices</p>
                     </section>
                 </section>
 
@@ -138,9 +130,32 @@
                               admin.username: YWRtaW4=
                               admin.password: azhzX2FkbWlu
                         </code></pre>
+                        <p style="color: red">Secrets are NOT encrypted in etcd by default!!</p>
+                        <p>Just Base64 encoded!</p>
                     </section>
                     <section>
-                        <h2>Secrets in Etcd</h2>
+                        <h2>Why protect Secrets?</h2>
+                        <p>Attractive target for hackers</p>
+                        <p>Easily leak to repos, logs, ...</p>
+                        <p>Violation of &ldquo;Least Privilege&rdquo; principle</p>
+                    </section>
+                    <section>
+                        <h2>Encryption Layers</h2>
+                        <p>
+                            <img src="images/encryption_layers.png" class="plain" width="80%">
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Envelope Encryption</h2>
+                        <p>
+                            <img src="images/envelope_encryption.png" class="plain" width="100%">
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Cloud KMS</h2>
+                        <p>Azure Key Vault</p>
+                        <p>Google Cloud KMS</p>
+                        <p>AWS KMS</p>
                     </section>
                     <section>
                         <h2>Azure FlexVolumes</h2>
@@ -161,105 +176,116 @@
                                   readOnly: true
                         </code></pre>
                     </section>
-                    <section>
-                        <h2>Kubernetes KMS</h2>
-                        <pre><code class="hljs yaml" data-trim>
-                                apiVersion: apiserver.config.k8s.io/v1
-                                kind: EncryptionConfiguration
-                                resources:
-                                  - resources:
-                                    - secrets
-                                    providers:
-                                    - kms:
-                                        name: myKmsPlugin
-                                        endpoint: ...
-                                        ...
-                                    - identity: {}
-                        </code></pre>
-                        <p>Set the --encryption-provider-config flag on the kube-apiserver</p>
-                    </section>
                 </section>
 
                 <!-- Config Maps -->
                 <section>
                     <section data-background="images/title_image.png">
                         <h2 style="color: white">Spring Cloud Kubernetes</h2>
+                        <p>
+                            <small>
+                                <a href="https://spring.io/projects/spring-cloud-kubernetes">https://spring.io/projects/spring-cloud-kubernetes</a><br>
+                                <a href="https://cloud.spring.io/spring-cloud-kubernetes/spring-cloud-kubernetes.html">https://cloud.spring.io/spring-cloud-kubernetes/spring-cloud-kubernetes.html</a>
+                            </small>
+                        </p>
                     </section>
                     <section>
-                        <p>DiscoveryClient for Kubernetes (with Ribbon Support)</p>
-                        <p>ConfigMap PropertySource</p>
-                        <p>Secrets PropertySource</p>
-                        <p>Kubernetes Ecosystem Awareness</p>
-                        <p>Kubernetes Profile</p>
-                        <p>Pod Health Indicator</p>
+                        <h2>Features</h2>
+                        <ul>
+                            <li>DiscoveryClient for Kubernetes (with Ribbon Support)</li>
+                            <li>ConfigMap PropertySource</li>
+                            <li>Secrets PropertySource</li>
+                            <li>Kubernetes Ecosystem Awareness</li>
+                            <li>Kubernetes Profile</li>
+                            <ul>
+                                <li><a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/347">Issue 347: Profile Specific Configuration Not Loaded</a></li>
+                            </ul>
+                            <li>Pod Health Indicator</li>
+                        </ul>
                     </section>
                     <section>
-                        <h2>Spring Cloud Kubernetes Starters</h2>
-                        <p>org.springframework.cloud</p>
+                        <h4>Spring Cloud Kubernetes Starter Deps</h4>
                         <table>
                             <thead>
                             <tr>
-                                <th>Starter Dependency</th>
+                                <th>Starter</th>
                                 <th>Description</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>spring-cloud-starter-kubernetes</td>
-                                <td>Discovery Client implementation that resolves service names to Kubernetes Services</td>
+                                <td>Discovery Client</td>
                             </tr>
                             <tr>
                                 <td>spring-cloud-starter-kubernetes-config</td>
-                                <td>(Re)Load application properties from Kubernetes ConfigMaps and Secrets</td>
+                                <td>Load application properties from ConfigMaps & Secrets</td>
                             </tr>
                             <tr>
                                 <td>spring-cloud-starter-kubernetes-ribbon</td>
-                                <td>Ribbon client-side load balancer with server list obtained from Kubernetes Endpoints</td>
-                            </tr>
-                            <tr>
-                                <td>spring-cloud-starter-kubernetes-all</td>
-                                <td>All Spring Cloud Kubernetes features.</td>
+                                <td>Ribbon client-side load balancer</td>
                             </tr>
                             </tbody>
                         </table>
                     </section>
-
-                </section>
-
-                <!-- Secrets -->
-                <section>
                     <section data-background="images/title_image.png">
-                        <h2 style="color: white">Spring Boot Secrets on K8s</h2>
-                    </section>
-                    <section>
-                        <h2>Spring Boot</h2>
-                        <h3>Sensitive data</h3>
-                        <p>DB credentials, passwords, ...</p>
+                        <h1 style="color: white">Demo Time</h1>
+                        <p>
+                            <small>
+                                <a href="https://github.com:andifalk/kubernetes-spring-io-2019">https://github.com:andifalk/kubernetes-spring-io-2019</a>
+                            </small>
+                        </p>
                     </section>
                 </section>
 
                 <!-- Security Best Practices -->
                 <section>
                     <section data-background="images/title_image.png">
-                        <h2 style="color: white">K8s Security Best Practices</h2>
+                        <h2 style="color: white">Kubernetes Security</h2>
+                        <h2 style="color: white">Best Practices</h2>
                     </section>
                     <section>
-                        <h2>Kubernetes Security</h2>
+                        <h2>Kubernetes Security?</h2>
                         <img src="images/tweet_kubernetes_all_root.png" width="100%">
+                    </section>
+                    <section>
+                        <h2>Helm is Root on K8s</h2>
+                        <img src="images/helm_3_tweet.png" width="100%">
+                    </section>
+                    <section>
+                        <h2>Say no to Root</h2>
+                        <p>USER directive in Dockerfile</p>
+                        <p>K8s Security Context for a Pod/Container</p>
+                        <p>Pod Security Policy (Beta)</p>
+                        <p>
+                            <small>
+                                <a href="https://opensource.com/article/18/3/just-say-no-root-containers">Just say no to root containers</a>
+                            </small>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Kubernetes Security</h3>
+                        <img src="images/docker_images_vulnerabilities.png" class="plain" width="100%">
+                        <p>
+                            <small>
+                                <a href="https://snyk.io/opensourcesecurity-2019/">Source: The state of open source security report (snyk.io)</a>
+                            </small>
+                        </p>
                     </section>
                     <section>
                         <h2>Kubernetes Security</h2>
                         <img src="images/alpine_docker_cve.png" class="plain" width="75%">
                     </section>
                     <section>
-                        <h2>Say no to Root</h2>
-                    </section>
-                    <section>
-                        <h3>Kubernetes Security</h3>
-                        <img src="images/docker_images_vulnerabilities.png" class="plain" width="100%">
-                    </section>
-                    <section>
-                        <h2>Scan your container images</h2>
+                        <h2>Check your container images</h2>
+                        <p>Perform image scanning (Anchore, Clair, ...)</p>
+                        <p>Regularly update your (base) images</p>
+                        <p>Checkout Google Distroless Images</p>
+                        <p>
+                            <small>
+                                <a href="https://github.com/GoogleContainerTools/distroless">https://github.com/GoogleContainerTools/distroless</a>
+                            </small>
+                        </p>
                     </section>
 
                 </section>
