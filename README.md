@@ -30,6 +30,12 @@ on [Spring Cloud on Kubernetes](https://2019.springio.net/sessions/spring-cloud-
 * [Config Maps and Secrets](01-config-and-secrets/README.md)
 * [Discovery](02-discovery/README.md)
 
+You can run these demos locally on [Minikube](https://github.com/kubernetes/minikube) 
+or use a public cloud provider like Azure, AWS or GCP.
+
+In [GCP provisioning](00-provisioning) you find scripts
+for setting up & accessing GKE on Google Cloud.
+
 ## License
 
 Apache 2.0 licensed

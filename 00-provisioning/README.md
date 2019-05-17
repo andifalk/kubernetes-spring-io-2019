@@ -1,7 +1,7 @@
-# access cluster on google cloud
-gcloud auth login
-gcloud config set project pa-afa-kubernetes
-gcloud container clusters get-credentials "springio2019"
+# Demo K8s cluster on Google Cloud
 
-# delete cluster on google cloud
-gcloud beta container clusters delete "springio2019"
+Her you find helpful scripts to setup & access 
+GKE on Google Cloud.
+
+Note: Please replace "pa-afa-kubernetes" with your 
+own project on GCP in all provided scripts.
