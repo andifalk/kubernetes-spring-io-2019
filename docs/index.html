@@ -140,6 +140,24 @@
                         <p>Violation of &ldquo;Least Privilege&rdquo; principle</p>
                     </section>
                     <section>
+                        <h2>Best Practice for secrets</h2>
+                        <p>Do not use K8s API for reading secrets</p>
+                        <blockquote cite="https://kubernetes.io/docs/concepts/configuration/secret/#best-practices">
+                        "Listing secrets allows the clients to inspect the values of all secrets that are in that namespace."
+                        </blockquote>
+                        <p>
+                            <small>
+                                <a href="https://kubernetes.io/docs/concepts/configuration/secret/#best-practices">https://kubernetes.io/docs/concepts/configuration/secret/#best-practices</a>
+                            </small>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Best Practice for secrets</h2>
+                        <p>
+                            <img src="images/secrets_env_vars_tweet.png" class="plain" width="60%">
+                        </p>
+                    </section>
+                    <section>
                         <h2>Encryption Layers</h2>
                         <p>
                             <img src="images/encryption_layers.png" class="plain" width="80%">
@@ -235,21 +253,21 @@
                     </section>
                     <section>
                         <h2>Kubernetes Security?</h2>
-                        <img src="images/tweet_kubernetes_all_root.png" width="100%">
+                        <img src="images/tweet_kubernetes_all_root.png" width="100%" class="plain">
                     </section>
                     <section>
                         <h2>Helm is Root on K8s</h2>
-                        <img src="images/helm_3_tweet.png" width="100%">
+                        <img src="images/helm_3_tweet.png" width="100%" class="plain">
                     </section>
                     <section>
-                        <h2>Say no to Root</h2>
+                        <h1>Say no to Root</h1>
                         <p><em>USER</em> directive in Dockerfile</p>
                         <p>K8s Security Context for a Pod/Container</p>
                         <p>Pod Security Policy (Beta)</p>
                         <p>
                             <small>
                                 <a href="https://opensource.com/article/18/3/just-say-no-root-containers">Just say no to root containers</a><br>
-                                <a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Pod Security Policy</a>
+                                <a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Pod Security Policy</a><br>
                                 <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Pod Security Context</a>
                             </small>
                         </p>
