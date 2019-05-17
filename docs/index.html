@@ -130,7 +130,7 @@
                               admin.username: YWRtaW4=
                               admin.password: azhzX2FkbWlu
                         </code></pre>
-                        <p style="color: red">Secrets are NOT encrypted in etcd by default!!</p>
+                        <p style="color: red">Secrets in <em>etcd</em> DB are NOT encrypted with default settings !!</p>
                         <p>Just Base64 encoded!</p>
                     </section>
                     <section>
@@ -146,35 +146,24 @@
                         </p>
                     </section>
                     <section>
-                        <h2>Envelope Encryption</h2>
+                        <h2>Envelope Encryption on K8S</h2>
                         <p>
                             <img src="images/envelope_encryption.png" class="plain" width="100%">
+                        </p>
+                        <p>Supported as of kubernetes version 1.10</p>
+                        <p>
+                            <small>
+                                <a href="https://cloud.google.com/kms/docs/envelope-encryption">https://cloud.google.com/kms/docs/envelope-encryption</a><br>
+                                <a href="https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/">https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/</a>
+                            </small>
                         </p>
                     </section>
                     <section>
                         <h2>Cloud KMS</h2>
-                        <p>Azure Key Vault</p>
-                        <p>Google Cloud KMS</p>
-                        <p>AWS KMS</p>
-                    </section>
-                    <section>
-                        <h2>Azure FlexVolumes</h2>
-                        <pre><code class="hljs yaml" data-trim>
-                              ..
-                              volumes:
-                              - name: kv-volume-env
-                                flexVolume:
-                                  driver: "azure/kv"
-                                  secretRef:
-                                    name: kvcreds
-                                  options:
-                                    keyvaultobjectnames: "mysecret1;mysecret2"
-                                    keyvaultobjecttypes: "secret;secret"
-                                    keyvaultname: "my-keyvault"
-                                    resourcegroup: "my-key-vault"
-                                    ...
-                                  readOnly: true
-                        </code></pre>
+                        <p><a href="https://azure.microsoft.com/en-us/services/key-vault/">Azure Key Vault</a></p>
+                        <p><a href="https://cloud.google.com/kms/">Google Cloud KMS</a></p>
+                        <p><a href="https://aws.amazon.com/kms/">AWS KMS</a></p>
+                        <p><a href="https://github.com/oracle/kubernetes-vault-kms-plugin">Hashicorp Vault KMS Plugin</a></p>
                     </section>
                 </section>
 
@@ -192,9 +181,9 @@
                     <section>
                         <h2>Features</h2>
                         <ul>
-                            <li>DiscoveryClient for Kubernetes (with Ribbon Support)</li>
-                            <li>ConfigMap PropertySource</li>
-                            <li>Secrets PropertySource</li>
+                            <li>DiscoveryClient for Kubernetes (Ribbon Support)</li>
+                            <li>ConfigMapPropertySource</li>
+                            <li>SecretsPropertySource</li>
                             <li>Kubernetes Ecosystem Awareness</li>
                             <li>Kubernetes Profile</li>
                             <ul>
@@ -254,12 +243,14 @@
                     </section>
                     <section>
                         <h2>Say no to Root</h2>
-                        <p>USER directive in Dockerfile</p>
+                        <p><em>USER</em> directive in Dockerfile</p>
                         <p>K8s Security Context for a Pod/Container</p>
                         <p>Pod Security Policy (Beta)</p>
                         <p>
                             <small>
-                                <a href="https://opensource.com/article/18/3/just-say-no-root-containers">Just say no to root containers</a>
+                                <a href="https://opensource.com/article/18/3/just-say-no-root-containers">Just say no to root containers</a><br>
+                                <a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Pod Security Policy</a>
+                                <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Pod Security Context</a>
                             </small>
                         </p>
                     </section>
@@ -277,8 +268,9 @@
                         <img src="images/alpine_docker_cve.png" class="plain" width="75%">
                     </section>
                     <section>
-                        <h2>Check your container images</h2>
+                        <h2>Keep being secure</h2>
                         <p>Perform image scanning (Anchore, Clair, ...)</p>
+                        <p>Regularly update your kubernetes cluster version</p>
                         <p>Regularly update your (base) images</p>
                         <p>Checkout Google Distroless Images</p>
                         <p>
@@ -287,7 +279,6 @@
                             </small>
                         </p>
                     </section>
-
                 </section>
 
                 <!-- The End -->
