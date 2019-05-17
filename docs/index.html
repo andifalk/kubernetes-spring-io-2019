@@ -39,7 +39,7 @@
 		<div class="reveal">
 			<div class="slides">
 
-                <!-- Title, Speaker and Workshop Introduction -->
+                <!-- Title, Speaker and Session Introduction -->
                 <section>
                     <section data-background="images/title_image.png">
                         <h2 style="color: white">Spring Cloud on Kubernetes</h2>
@@ -48,7 +48,7 @@
                         <p style="color: white">
                             <small>
                             Slides: <a href="https://andifalk.github.io/kubernetes-spring-io-2019">https://andifalk.github.io/kubernetes-spring-io-2019</a><br>
-                            Source-Code: <a href="git@github.com:andifalk/kubernetes-spring-io-2019.git">git@github.com:andifalk/kubernetes-spring-io-2019.git</a>
+                            Source-Code: <a href="https://github.com/andifalk/kubernetes-spring-io-2019">https://github.com/andifalk/kubernetes-spring-io-2019</a>
                             </small>
                         </p>
                     </section>
@@ -221,7 +221,7 @@
                         <h1 style="color: white">Demo Time</h1>
                         <p>
                             <small>
-                                <a href="https://github.com:andifalk/kubernetes-spring-io-2019">https://github.com:andifalk/kubernetes-spring-io-2019</a>
+                                <a href="https://github.com/andifalk/kubernetes-spring-io-2019">https://github.com/andifalk/kubernetes-spring-io-2019</a>
                             </small>
                         </p>
                     </section>
@@ -255,7 +255,7 @@
                         </p>
                     </section>
                     <section>
-                        <h3>Kubernetes Security</h3>
+                        <h3>Vulnerabilities in well-know images</h3>
                         <img src="images/docker_images_vulnerabilities.png" class="plain" width="100%">
                         <p>
                             <small>
@@ -264,7 +264,7 @@
                         </p>
                     </section>
                     <section>
-                        <h2>Kubernetes Security</h2>
+                        <h2>Root without Password!</h2>
                         <img src="images/alpine_docker_cve.png" class="plain" width="75%">
                     </section>
                     <section>
@@ -283,6 +283,17 @@
 
                 <!-- The End -->
                 <section>
+                    <section>
+                        <h2>Summary / Key Insights</h2>
+                        <ul>
+                            <li>Configs, Secrets & Discovery the &ldquo;Spring Way&rdquo;
+                                <br>-- More to come: Istio & Helm awareness, ...</li>
+                            <li><span style="color: red">&ldquo;Least privilege&rdquo;</span> for service accounts</li>
+                            <li>Ensure your secrets are <span style="color: red">encrypted</span> in K8s</li>
+                            <li>Say <span style="color: red">NO</span> to root on K8s</li>
+                            <li>Keep K8s and container images <span style="color: red">up-to-date</span></li>
+                        </ul>
+                    </section>
                     <section data-background="images/title_image.png">
                         <h1 style="color: white">Q&A</h1>
                         <a href="https://www.novatec-gmbh.de/">https://www.novatec-gmbh.de</a></br>
